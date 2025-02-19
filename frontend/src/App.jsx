@@ -7,7 +7,7 @@ import Navbar from "./Component/Navbar";
 import ProductDetails from "./Component/ProductsDetail";
 import Produc from "./Component/Products";
 import LoginCard from "./Component/login";
-import Dashboard from "./Component/dashboard";
+import Dashboard from "./Component/Dashboard";
 import Category from "./Component/category";
 import CategoryProduct from "./Component/Categories";
 // import Home from "./Component/home";
