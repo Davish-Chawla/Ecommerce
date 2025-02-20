@@ -95,9 +95,9 @@ export default function CategoryProduct() {
         )
     }
     return (
-        <div className="flex h-[80vh] w-full gap-5 container mx-auto">
+        <div className="flex gap-2 container p-0.5 max-w-screen">
             {/* Categories List */}
-            <div className="h-full w-2/12 p-5 rounded-md bg-gray-800 text-gray-200 font-semibold">
+            <div className="h-full w-1/4 p-5 rounded-md bg-gray-800 text-gray-200 font-semibold">
                 {categories.map(category => (
                     <div 
                         key={category._id} 
@@ -110,12 +110,12 @@ export default function CategoryProduct() {
             </div>
             
             {/* Products List */}
-            <div className="w-10/12 h-full overflow-auto bg-gray-800 p-5 rounded-md grid grid-cols-2 gap-10 text-gray-200">
+            <div className="w-3/4 h-full overflow-auto bg-gray-800 p-5 rounded-md grid grid-cols-2 gap-10 text-gray-200">
                 {products.length > 0 ? (
                     products.map((product, index) => (
-                        <Link  to={`/products/${product._id}`} key={index} className='flex flex-col gap-5 p-10 rounded-2xl border-2 border-black'>
+                        <Link  to={`/products/${product._id}`} key={index} className='flex flex-col gap-2 p-4 rounded-2xl border-2 border-black'>
                             <div>
-                                <img src={product.image} className='h-40 object-cover w-full' alt={product.name} />
+                                <img src={product.image} className='h-[60vh] object-cover w-full' alt={product.name} />
                             </div>
                             <div className='flex flex-col gap-2'>
                                 <h2 className='text-lg font-semibold'>{product.name}</h2>

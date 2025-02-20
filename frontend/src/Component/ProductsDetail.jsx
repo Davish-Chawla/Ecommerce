@@ -27,14 +27,14 @@
 
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams , useNavigate } from "react-router-dom";
 
 export default function ProductDetails() {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    const navigate=useNavigate()
     useEffect(() => {
         axios.get(`http://localhost:7000/api/products/product/${id}`)
             .then(response => {
@@ -48,6 +48,19 @@ export default function ProductDetails() {
                 setLoading(false);
             });
     }, [id]);
+    function handlecart(id){
+        axios.post(`http://localhost:7000/api/cart/add`,{product:id }, {
+            headers: {
+                Authorization : localStorage.getItem("token")
+            }
+        })
+        .then(resp=>{
+            if(resp.data.success){
+                navigate("/cart")
+            }
+        })
+    
+    }
 
     if (loading) {
         return <div className="text-center py-10">Loading...</div>;
@@ -78,7 +91,7 @@ export default function ProductDetails() {
                     <p><strong>Rating:</strong> ⭐ {product.rating || "No rating"}</p>
 
                     {/* Add to Cart Button */}
-                    <button className="mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                    <button onClick={()=>{handlecart(product._id)}} className="mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
                         Add to Cart
                     </button>
                 </div>
